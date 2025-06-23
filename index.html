@@ -11,7 +11,7 @@
   <meta name="author" content="Brisa & Vino" />
 
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="SommeliAI 🍷 | Seu assistente virtual de vinhos" />
@@ -113,27 +113,39 @@
       color: #999;
       margin-top: 60px;
     }
+
+    .footer-links a {
+      color: #999;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .feedback-button {
+      display: inline-block;
+      background-color: #064420;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-
   <div class="container">
     <header>
       <h1>SommeliAI 🍷</h1>
       <p>Seu assistente de vinho descomplicado</p>
     </header>
 
-<!-- 💬 BOTÃO CHAMATIVO DO CHAT -->
-  <button onclick="window.chatbase.openChat()" 
-          style="padding: 12px 24px; font-size: 16px; background-color: #ffebf0; border: none; border-radius: 8px; color: #80002f; cursor: pointer;">
-    👋 Me pergunte sobre vinhos
-  </button>
-
-  <script src="https://www.chatbase.co/embed.min.js" 
-          chatbotId="ea10rdna1zeppkk4z914mn3e3711vztf" 
-          domain="sommeliai.pages.dev" defer></script>
-    
     <section>
       <h2><span class="icon-title">💡</span>O que é o SommeliAI?</h2>
       <p>
@@ -144,34 +156,38 @@
     <section>
       <h2><span class="icon-title">⚙️</span>Como funciona?</h2>
       <p>
-        É simples: se você está no mercado e quer ajuda para decidir entre dois vinhos, envie os nomes — nosso sommelier vai te ajudar a escolher.
-Vai presentear alguém ou tem uma ocasião especial? O SommeliAI faz perguntas inteligentes e te dá uma resposta rápida e descomplicada.
+        É simples: se você está no mercado e quer ajuda para decidir entre dois vinhos, envie os nomes — nosso sommelier vai te ajudar a escolher.<br>
+        Vai presentear alguém ou tem uma ocasião especial? O SommeliAI faz perguntas inteligentes e te dá uma resposta rápida e descomplicada.
       </p>
     </section>
 
     <section>
-      <h2><span class="icon-title">🧪</span>Teste agora mesmo</h2>
+      <h2><span class="icon-title">🧪</span>Converse com o SommeliAI</h2>
       <p>
-        Role a página e experimente conversar com o SommeliAI! É como ter um sommelier no bolso — mas muito mais leve e direto ao ponto.
+        Manda ver! O SommeliAI está aqui pra tirar suas dúvidas de vinho:
       </p>
+
+      <iframe 
+        class="chatbase"
+        src="https://www.chatbase.co/chatbot-iframe/ea10rdna1zeppkk4z914mn3e3711vztf"
+      ></iframe>
     </section>
 
-    <iframe 
-      class="chatbase"
-      src="https://www.chatbase.co/chatbot-iframe/iVfilpJRo_G3SN6_EPXwz"
-    ></iframe>
-    
-     <div style="text-align:center; margin-top: 20px;">
-      <a href="https://forms.gle/5dDCrErMZAACGsqj7" target="_blank" rel="noopener noreferrer" 
-         style="background-color: #064420; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+    <div style="text-align:center;">
+      <a class="feedback-button"
+         href="https://forms.gle/5dDCrErMZAACGsqj7" 
+         target="_blank" 
+         rel="noopener noreferrer">
         Quero ajudar com feedback!
       </a>
     </div>
 
     <footer>
+      <div class="footer-links">
+        <a href="https://instagram.com/_sommeliai" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
       Feito com ❤️ por SommeliAI · Brisa & Vino
     </footer>
   </div>
-
 </body>
 </html>
