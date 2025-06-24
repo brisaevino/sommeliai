@@ -11,7 +11,7 @@
   <meta name="author" content="Brisa & Vino" />
 
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="icon" href="favicon.png" type="image/png" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="SommeliAI 🍷 | Seu assistente virtual de vinhos" />
@@ -31,7 +31,7 @@
   <meta name="theme-color" content="#222222" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKKQF64KX1"></script>
@@ -41,6 +41,14 @@
     gtag('js', new Date());
     gtag('config', 'G-QKKQF64KX1');
   </script>
+
+  <!-- Chatbase Script -->
+  <script>
+    window.chatbaseConfig = {
+      chatbotId: "ea10rdna1zeppkk4z914mn3e3711vztf",
+    };
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" defer></script>
 
   <!-- ESTILOS -->
   <style>
@@ -100,11 +108,17 @@
       margin-right: 6px;
     }
 
-    iframe.chatbase {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 12px;
+    .feedback-button {
+      display: inline-block;
+      background-color: #064420;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      text-align: center;
     }
 
     footer {
@@ -122,19 +136,6 @@
 
     .footer-links a:hover {
       text-decoration: underline;
-    }
-
-    .feedback-button {
-      display: inline-block;
-      background-color: #064420;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-top: 20px;
-      text-align: center;
     }
   </style>
 </head>
@@ -166,11 +167,6 @@
       <p>
         Manda ver! O SommeliAI está aqui pra tirar suas dúvidas de vinho:
       </p>
-
-      <iframe 
-        class="chatbase"
-        src="https://www.chatbase.co/chatbot-iframe/ea10rdna1zeppkk4z914mn3e3711vztf"
-      ></iframe>
     </section>
 
     <div style="text-align:center;">
@@ -184,21 +180,10 @@
 
     <footer>
       <div class="footer-links">
-        <a href="https://instagram.com/_sommeliai" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://instagram.com/_sommeliai" target="_blank" rel="noopener noreferrer">Acompanhe novos conteúdos no Instagram!</a>
       </div>
       Feito com ❤️ por SommeliAI · Brisa & Vino
     </footer>
   </div>
-
-  <!-- Botão flutuante para abrir o chat -->
-  <button onclick="window.chatbase.openChat()" 
-    style="position: fixed; bottom: 20px; right: 20px; background-color: #ffebf0; color: #80002f; border: none; border-radius: 50px; padding: 12px 20px; font-size: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; z-index: 1000;">
-    🍷 Pergunte ao SommeliAI
-  </button>
-
-  <!-- Script de ativação do chatbase -->
-  <script src="https://www.chatbase.co/embed.min.js" 
-    chatbotId="ea10rdna1zeppkk4z914mn3e3711vztf" 
-    domain="sommeliai.pages.dev" defer></script>
 </body>
 </html>
