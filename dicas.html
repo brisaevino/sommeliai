@@ -3,12 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qual vinho combina com cada ocasião? | SommeliAI 🍷</title>
-  <meta name="description" content="Descubra qual vinho escolher para encontros, churrascos, presentes e muito mais. Dicas simples e diretas do SommeliAI!" />
-  <meta name="keywords" content="vinho para churrasco, vinho para encontro, vinho para festa, harmonização de vinhos, como escolher vinho" />
+
+  <title>Dicas de Vinhos 🍷 | SommeliAI</title>
+  <meta name="description" content="Descubra qual vinho combina com cada ocasião. Dicas fáceis, acessíveis e cheias de estilo com o SommeliAI." />
+  <meta name="keywords" content="dicas de vinho, vinho para ocasião, harmonização, vinho para presente, vinho para encontro, vinho para churrasco, SommeliAI, Brisa e Vino" />
   <meta name="author" content="Brisa & Vino" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dicas de Vinhos 🍷 | SommeliAI" />
+  <meta property="og:description" content="Encontre o vinho ideal para cada ocasião com as dicas práticas e estilosas do SommeliAI." />
+  <meta property="og:image" content="https://brisaevino.github.io/sommeliai/og-image.png" />
+  <meta property="og:url" content="https://brisaevino.github.io/sommeliai/dicas.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dicas de Vinhos 🍷 | SommeliAI" />
+  <meta name="twitter:description" content="Descubra qual vinho combina com cada ocasião. Simples e sem frescura." />
+  <meta name="twitter:image" content="https://brisaevino.github.io/sommeliai/og-image.png" />
+
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#222222" />
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKKQF64KX1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QKKQF64KX1');
+  </script>
+
+  <!-- ESTILOS -->
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -17,76 +50,126 @@
       margin: 0;
       padding: 0;
     }
+
+    nav {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    nav div {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #80002f;
+      font-weight: 600;
+    }
+
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 60px 20px;
+      padding: 40px 20px;
     }
-    h1 {
-      font-size: 2.2rem;
+
+    header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
-    h2 {
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .tip-section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .tip-section h2 {
       font-size: 1.4rem;
       color: #80002f;
-      margin-top: 40px;
+      margin-bottom: 10px;
     }
-    p {
+
+    .tip-section p {
       font-size: 1rem;
       line-height: 1.6;
+      color: #333;
     }
-    .cta {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .cta a {
-      display: inline-block;
-      background-color: #80002f;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-    }
+
     footer {
       text-align: center;
       font-size: 0.9rem;
       color: #999;
       margin-top: 60px;
     }
+
+    .footer-links a {
+      color: #999;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
+
 <body>
+  <!-- MENU DE NAVEGAÇÃO -->
+  <nav>
+    <div>
+      <a href="index.html">🏠 Home</a>
+      <a href="dicas.html">🍷 Dicas por ocasião</a>
+    </div>
+  </nav>
+
   <div class="container">
-    <h1>Qual vinho combina com cada ocasião? 🍷</h1>
+    <header>
+      <h1>🍷 Dicas por Ocasião</h1>
+      <p>Descubra o vinho ideal para cada momento da sua vida.</p>
+    </header>
 
-    <h2>🍝 Jantar romântico</h2>
-    <p>Quer impressionar alguém especial? Vá de Pinot Noir ou Sauvignon Blanc. São elegantes, leves e criam um clima perfeito sem pesar no paladar.</p>
+    <div class="tip-section">
+      <h2>🎉 Festas com os amigos</h2>
+      <p>Vai reunir a galera? Aposte em vinhos leves e democráticos, como um espumante brut, vinho verde ou rosé seco. São refrescantes, agradam a maioria e combinam com petiscos.</p>
+    </div>
 
-    <h2>🔥 Churrasco com amigos</h2>
-    <p>Para carnes e risadas, aposte em Malbec, Carménère ou Syrah. Têm mais corpo e harmonizam bem com o defumado da grelha.</p>
+    <div class="tip-section">
+      <h2>🍽️ Jantar romântico</h2>
+      <p>Se a noite pede clima, escolha um Pinot Noir (mais leve) ou um Syrah (mais intenso). Se for peixe, vá de Chardonnay ou Sauvignon Blanc. Sirva levemente gelado e com taças bonitas.</p>
+    </div>
 
-    <h2>🎁 Presente de aniversário</h2>
-    <p>Espumantes brut ou um vinho do Porto são certeiros! Mostram cuidado e têm aquela pegada especial que todo presente pede.</p>
+    <div class="tip-section">
+      <h2>🎁 Presente especial</h2>
+      <p>Quer impressionar? Escolha um rótulo chileno ou argentino de Cabernet Sauvignon ou Malbec. Embalagens bonitas fazem diferença. E uma tag escrita à mão vale mais que mil pontos!</p>
+    </div>
 
-    <h2>🎉 Festa ou confraternização</h2>
-    <p>Quer agradar geral? Vá de espumante ou vinho branco leve. São refrescantes e versáteis, perfeitos pra galera.</p>
+    <div class="tip-section">
+      <h2>🔥 Churrasco</h2>
+      <p>Carne pede vinho com presença: vá de Tannat, Malbec ou Carménère. Se tiver linguiça e frango, um vinho rosé seco também surpreende!</p>
+    </div>
 
-    <h2>🍫 Sobremesa ou chocolate</h2>
-    <p>Vinhos doces como Porto ou Late Harvest criam a combinação perfeita com doces mais intensos ou amargos.</p>
-
-    <h2>🍂 Noite de frio</h2>
-    <p>Tannat ou Cabernet Sauvignon são encorpados e ideais pra um jantar quentinho no inverno.</p>
-
-    <h2>☀️ Dia quente ou piscina</h2>
-    <p>Rosé seco, branco gelado ou espumante brut refrescam e combinam com sol e boas risadas.</p>
-
-    <div class="cta">
-      <a href="https://brisaevino.github.io/sommeliai/" target="_blank">❓ Ainda em dúvida? Fale com o SommeliAI</a>
+    <div class="tip-section">
+      <h2>💆 Sozinho em casa</h2>
+      <p>Você merece um momento com um vinho fácil de beber. Um Merlot, um branco levinho ou até uma tacinha de vinho do Porto com chocolate. Self care é isso.</p>
     </div>
 
     <footer>
+      <div class="footer-links">
+        <a href="https://instagram.com/_sommeliai" target="_blank" rel="noopener noreferrer">Vê nossas dicas no Instagram</a>
+      </div>
       Feito com ❤️ por SommeliAI · Brisa & Vino
     </footer>
   </div>
