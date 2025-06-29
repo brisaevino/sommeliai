@@ -3,34 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Dicas de Vinhos 🍷 | SommeliAI</title>
-  <meta name="description" content="Descubra qual vinho combina com cada ocasião. Dicas fáceis, acessíveis e cheias de estilo com o SommeliAI." />
-  <meta name="keywords" content="dicas de vinho, vinho para ocasião, harmonização, vinho para presente, vinho para encontro, vinho para churrasco, SommeliAI, Brisa e Vino" />
-  <meta name="author" content="Brisa & Vino" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Dicas de Vinhos 🍷 | SommeliAI" />
-  <meta property="og:description" content="Encontre o vinho ideal para cada ocasião com as dicas práticas e estilosas do SommeliAI." />
-  <meta property="og:image" content="https://brisaevino.github.io/sommeliai/og-image.png" />
-  <meta property="og:url" content="https://brisaevino.github.io/sommeliai/dicas.html" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dicas de Vinhos 🍷 | SommeliAI" />
-  <meta name="twitter:description" content="Descubra qual vinho combina com cada ocasião. Simples e sem frescura." />
-  <meta name="twitter:image" content="https://brisaevino.github.io/sommeliai/og-image.png" />
-
-  <!-- Manifest -->
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#222222" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Dicas por ocasião | SommeliAI</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKKQF64KX1"></script>
@@ -41,7 +14,7 @@
     gtag('config', 'G-QKKQF64KX1');
   </script>
 
-  <!-- ESTILOS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -51,153 +24,253 @@
       padding: 0;
     }
 
-    nav {
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
-    }
-
-    nav div {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #80002f;
-      font-weight: 600;
-    }
-
     .container {
-      max-width: 800px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 60px 20px;
     }
 
     header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
 
     header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+      color: #80002f;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card h3 {
+      color: #80002f;
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #333;
+      margin: 0;
     }
 
     .tip-section {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      border: 2px dashed #80002f;
+      background-color: #fff0f4;
+      border-radius: 16px;
+      padding: 32px 24px;
+      margin-top: 60px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(128, 0, 47, 0.1);
     }
 
     .tip-section h2 {
-      font-size: 1.4rem;
       color: #80002f;
-      margin-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
     }
 
     .tip-section p {
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: 1.1rem;
       color: #333;
+      margin-bottom: 24px;
+      line-height: 1.4;
     }
 
-    footer {
+    .tip-section img {
+      max-width: 480px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+    }
+
+    .tip-section a {
+      display: inline-block;
+      background-color: #80002f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .tip-section a:hover {
+      background-color: #5a001f;
+    }
+
+    .chatbot-toggle-btn {
+      display: block;
+      width: max-content;
+      margin: 50px auto 0;
+      padding: 14px 30px;
+      background-color: #80002f;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .chatbot-toggle-btn:hover {
+      background-color: #5a001f;
+    }
+
+    #chatbot-container {
+      max-width: 800px;
+      height: 600px;
+      margin: 24px auto 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    #chatbot-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .back-link {
+      display: block;
       text-align: center;
-      font-size: 0.9rem;
-      color: #999;
-      margin-top: 60px;
-    }
-
-    .footer-links a {
-      color: #999;
-      margin: 0 10px;
+      margin-bottom: 60px;
+      color: #80002f;
+      font-weight: 600;
       text-decoration: none;
     }
 
-    .footer-links a:hover {
+    .back-link:hover {
       text-decoration: underline;
     }
   </style>
 </head>
-
 <body>
-  <!-- MENU DE NAVEGAÇÃO -->
-  <nav>
-    <div>
-      <a href="index.html">🏠 Home</a>
-      <a href="dicas.html">🍷 Dicas por ocasião</a>
-    </div>
-  </nav>
 
   <div class="container">
     <header>
-      <h1>🍷 Dicas por Ocasião</h1>
-      <p>Descubra o vinho ideal para cada momento da sua vida.</p>
+      <h1>Dicas por ocasião</h1>
+      <p>Encontre sugestões de vinhos certeiros para diferentes momentos da vida. Nada técnico, só boas experiências.</p>
     </header>
 
-    <div class="tip-section">
-      <h2>🎉 Festas com os amigos</h2>
-      <p>Vai reunir a galera? Aposte em vinhos leves e democráticos, como um espumante brut, vinho verde ou rosé seco. São refrescantes, agradam a maioria e combinam com petiscos.</p>
-    </div>
-
-    <section class="tip-section" style="border: 2px dashed #80002f; background-color: #fff0f4;">
-      <h2 style="text-align: center; color: #80002f;">✨ Nossa recomendação especial</h2>
-      <p style="text-align: center; font-size: 1.1rem;">
-        Pra festas animadas, eu voto pela <strong>praticidade</strong>!<br>
-        Os vinhos em lata da <strong>Somm</strong> são refrescantes, deliciosos e todo mundo vai curtir.🍷✨<br>
-  
-      </p>
-
-      <div style="text-align: center; margin: 20px 0;">
-        <img 
-          src="6.png"
-          alt="Vinhos em lata Somm" 
-          style="max-width: 480px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+    <section class="grid">
+      <div class="card">
+        <h3>Jantar a dois</h3>
+        <p>Opte por vinhos elegantes, mas fáceis de gostar. Um Pinot Noir leve ou um espumante brut já criam o clima.</p>
       </div>
-
-      <div style="text-align: center;">
-        <a href="https://sommvinhos.com?sca_ref=9061002.yMPLcQQCO5&sca_source=DicasporOcasiao" 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           onclick="gtag('event', 'clique-vinho-somm', { event_category: 'Afiliado', event_label: 'Vinho Somm - Lata' })"
-           style="display: inline-block; background-color: #80002f; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
-          🍷 Quero conhecer os vinhos em lata Somm
-        </a>
+      <div class="card">
+        <h3>Presente rápido</h3>
+        <p>Espumantes brut ou rosés secos costumam agradar e parecem mais sofisticados do que são.</p>
+      </div>
+      <div class="card">
+        <h3>Netflix e sofá</h3>
+        <p>Vinhos confortáveis, como Merlot ou blends suaves, são ideais pra relaxar sem pensar demais.</p>
+      </div>
+      <div class="card">
+        <h3>Churrasco de amigos</h3>
+        <p>Vai de Malbec ou Cabernet Sauvignon — encorpados e perfeitos com carne. Se tiver calor, um rosé seco também vai bem.</p>
+      </div>
+      <div class="card">
+        <h3>Almoço em família</h3>
+        <p>Brancos leves, como Chardonnay sem barrica ou Sauvignon Blanc, funcionam com tudo — de frango à salada.</p>
+      </div>
+      <div class="card">
+        <h3>Comida japonesa</h3>
+        <p>Vinhos brancos aromáticos como Riesling ou até um espumante brut harmonizam bem com peixes e molhos doces.</p>
       </div>
     </section>
 
-    <div class="tip-section">
-      <h2>🍽️ Jantar romântico</h2>
-      <p>Se a noite pede clima, escolha um Pinot Noir (mais leve) ou um Syrah (mais intenso). Se for peixe, vá de Chardonnay ou Sauvignon Blanc. Sirva levemente gelado e com taças bonitas.</p>
+    <section class="tip-section">
+      <h2>✨ Nossa recomendação especial</h2>
+      <p>
+        Pra festas animadas, eu voto pela <strong>praticidade</strong>!<br>
+        Os vinhos em lata da <strong>Somm</strong> são refrescantes, deliciosos e todo mundo vai curtir.
+      </p>
+
+      <img 
+        src="6.png"
+        alt="Vinhos em lata Somm" 
+      />
+
+      <a href="https://sommvinhos.com?sca_ref=9061002.yMPLcQQCO5&sca_source=DicasporOcasiao" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         onclick="gtag('event', 'clique-vinho-somm', { event_category: 'Afiliado', event_label: 'Vinho Somm - Lata' })">
+        🍷 Quero conhecer os vinhos em lata Somm
+      </a>
+    </section>
+
+    <button class="chatbot-toggle-btn" id="toggleChatbotBtn">Quer uma dica personalizada? Clique aqui</button>
+
+    <div id="chatbot-container">
+      <iframe id="chatbot-iframe" src="https://www.chatbase.co/chatbot-iframe/iVfilpJRo_G3SN6_EPXwz" allow="clipboard-write"></iframe>
     </div>
 
-    <div class="tip-section">
-      <h2>🎁 Presente especial</h2>
-      <p>Quer impressionar? Escolha um rótulo chileno ou argentino de Cabernet Sauvignon ou Malbec. Embalagens bonitas fazem diferença. E uma tag escrita à mão vale mais que mil pontos!</p>
-    </div>
-
-    <div class="tip-section">
-      <h2>🔥 Churrasco</h2>
-      <p>Carne pede vinho com presença: vá de Tannat, Malbec ou Carménère. Se tiver linguiça e frango, um vinho rosé seco também surpreende!</p>
-    </div>
-
-    <div class="tip-section">
-      <h2>💆 Sozinho em casa</h2>
-      <p>Você merece um momento com um vinho fácil de beber. Um Merlot, um branco levinho ou até uma tacinha de vinho do Porto com chocolate. Self care é isso.</p>
-    </div>
-
-    <footer>
-      <div class="footer-links">
-        <a href="https://instagram.com/_sommeliai" target="_blank" rel="noopener noreferrer">Vê nossas dicas no Instagram</a>
-      </div>
-      Feito com ❤️ por SommeliAI · Brisa & Vino
-    </footer>
+    <a class="back-link" href="index.html">← Voltar ao início</a>
   </div>
+
+  <script>
+    // Animação fade-in e slide-up das cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Toggle chatbot iframe visibility
+    const toggleBtn = document.getElementById('toggleChatbotBtn');
+    const chatbotContainer = document.getElementById('chatbot-container');
+
+    toggleBtn.addEventListener('click', () => {
+      if (chatbotContainer.style.display === 'block') {
+        chatbotContainer.style.display = 'none';
+        toggleBtn.textContent = 'Quer uma dica personalizada? Clique aqui';
+      } else {
+        chatbotContainer.style.display = 'block';
+        toggleBtn.textContent = 'Fechar dica personalizada';
+      }
+    });
+  </script>
+
 </body>
 </html>
