@@ -3,57 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SommeliAI 🍷</title>
+  <title>SommeliAI - Chat</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-359388009"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-359388009');
-  </script>
-
-  <!-- Chatbase -->
-  <script>
-    window.chatbaseConfig = {
-      chatbotId: "iVfilpJRo_G3SN6_EPXwz",
-    };
-  </script>
-  <script src="https://www.chatbase.co/embed.min.js" chatbotId="iVfilpJRo_G3SN6_EPXwz" defer></script>
-</head>
-<body>
-  <div id="chat-container">
-    <header>
-      <h1>SommeliAI 🍷</h1>
-      <p>Seu sommelier virtual, leve e descomplicado!</p>
-    </header>
-
-    <div id="fake-box">
-      <p>Oi! Clique no botão abaixo e comece a conversar com o SommeliAI 🍷</p>
-      <button id="open-real-chat">Abrir chat</button>
-    </div>
-  </div>
-
   <style>
-    .chatbase-chat-button {
-      display: none !important;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f1;
+    }
+
+    header {
+      background-color: #7b2e2e;
+      color: white;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .chat-wrapper {
+      width: 100%;
+      height: calc(100vh - 70px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
+</head>
+<body>
+  <header>
+    <h1>SommeliAI 🍷</h1>
+    <p style="margin: 0; font-size: 0.9rem;">Seu sommelier virtual descomplicado</p>
+  </header>
 
-  <script>
-    window.addEventListener("load", () => {
-      const openBtn = document.getElementById("open-real-chat");
-
-      openBtn.addEventListener("click", () => {
-        const realBtn = document.querySelector("iframe");
-        if (realBtn) {
-          realBtn.contentWindow.postMessage({ open: true }, "*");
-          gtag('event', 'chat_aberto', { event_category: 'engajamento', event_label: 'Chat via SommeliAI' });
-        }
-      });
-    });
-  </script>
+  <div class="chat-wrapper">
+    <iframe
+      src="https://www.chatbase.co/chatbot-iframe/iVfilpJRo_G3SN6_EPXwz"
+      allow="microphone"
+    ></iframe>
+  </div>
 </body>
 </html>
