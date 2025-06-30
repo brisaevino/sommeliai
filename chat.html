@@ -49,20 +49,23 @@
 
     nav {
       display: flex;
-      gap: 16px;
-      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     nav a {
-      color: #fff;
+      background-color: #fff;
+      color: #7b2e2e;
+      padding: 6px 14px;
+      border-radius: 20px;
       text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: opacity 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     nav a:hover {
-      opacity: 0.8;
+      background-color: #f2d5d5;
     }
 
     .chat-container {
@@ -82,6 +85,19 @@
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     }
 
+    footer {
+      text-align: center;
+      padding: 20px 10px 30px;
+      font-size: 0.9rem;
+      color: #7b2e2e;
+    }
+
+    footer a {
+      color: #7b2e2e;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -89,17 +105,15 @@
       }
 
       header h1 {
-        margin-bottom: 8px;
-      }
-
-      nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 12px;
+        margin-bottom: 12px;
       }
 
       iframe {
         height: 85vh;
+      }
+
+      nav {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -111,6 +125,7 @@
     <nav>
       <a href="index.html">Como funciona?</a>
       <a href="dicas.html">Dicas</a>
+      <a href="chat.html">Chat</a>
       <a href="https://forms.gle/R22fXoU9e2yXjXNbA" target="_blank">Assine a newsletter</a>
     </nav>
   </header>
@@ -118,6 +133,11 @@
   <div class="chat-container">
     <iframe src="https://www.chatbase.co/chatbot-iframe/iVfilpJRo_G3SN6_EPXwz" allow="microphone"></iframe>
   </div>
+
+  <footer>
+    Quer receber dicas direto no seu e-mail? <br />
+    <a href="https://forms.gle/R22fXoU9e2yXjXNbA" target="_blank">Assine a newsletter do SommeliAI 🍷</a>
+  </footer>
 
 </body>
 </html>
