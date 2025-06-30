@@ -29,7 +29,7 @@
     }
     h2 {
       font-size: 1.4rem;
-      color: #80002f;
+      color: #fff;
       margin-top: 40px;
     }
     p {
