@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SommeliAI 🍷</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-359388009"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-359388009');
+  </script>
+
+  <!-- Chatbase -->
+  <script>
+    window.chatbaseConfig = {
+      chatbotId: "iVfilpJRo_G3SN6_EPXwz",
+    };
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" chatbotId="iVfilpJRo_G3SN6_EPXwz" defer></script>
 </head>
 <body>
   <div id="chat-container">
@@ -13,19 +30,30 @@
       <p>Seu sommelier virtual, leve e descomplicado!</p>
     </header>
 
-    <div id="chat-box"></div>
-
-    <form id="chat-form">
-      <input
-        type="text"
-        id="user-input"
-        placeholder="Digite sua dúvida sobre vinhos..."
-        autocomplete="off"
-      />
-      <button type="submit">Enviar</button>
-    </form>
+    <div id="fake-box">
+      <p>Oi! Clique no botão abaixo e comece a conversar com o SommeliAI 🍷</p>
+      <button id="open-real-chat">Abrir chat</button>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <style>
+    .chatbase-chat-button {
+      display: none !important;
+    }
+  </style>
+
+  <script>
+    window.addEventListener("load", () => {
+      const openBtn = document.getElementById("open-real-chat");
+
+      openBtn.addEventListener("click", () => {
+        const realBtn = document.querySelector("iframe");
+        if (realBtn) {
+          realBtn.contentWindow.postMessage({ open: true }, "*");
+          gtag('event', 'chat_aberto', { event_category: 'engajamento', event_label: 'Chat via SommeliAI' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
