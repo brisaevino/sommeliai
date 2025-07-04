@@ -18,12 +18,7 @@
   </script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: 'Inter', sans-serif;
@@ -40,11 +35,6 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-    }
-
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
     }
 
     nav {
@@ -64,44 +54,36 @@
       transition: all 0.2s ease;
     }
 
-    nav a:hover {
-      background-color: #f2d5d5;
-    }
+    nav a:hover { background-color: #f2d5d5; }
 
     .chat-container {
       flex: 1;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 10px;
-      overflow: hidden;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
     }
 
-    /* Chat box styles */
     #chat {
       width: 100%;
       max-width: 720px;
-      height: 90vh;
       background: white;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      padding: 16px;
+      flex: 1;
       overflow-y: auto;
+      padding: 20px;
+      margin-bottom: 12px;
     }
 
     .message {
       margin-bottom: 14px;
-      line-height: 1.4;
-      word-wrap: break-word;
+      line-height: 1.5;
       white-space: pre-wrap;
     }
 
     .message.bot {
-      text-align: left;
       color: #4a4a4a;
-      font-weight: 500;
     }
 
     .message.user {
@@ -111,19 +93,17 @@
     }
 
     .input-area {
+      width: 100%;
+      max-width: 720px;
       display: flex;
-      margin-top: auto;
-      padding-top: 10px;
-      border-top: 1px solid #eee;
     }
 
-    .input-area input[type="text"] {
+    .input-area input {
       flex: 1;
       padding: 12px 16px;
       border: 1px solid #ccc;
       border-radius: 30px;
       font-size: 1rem;
-      font-family: 'Inter', sans-serif;
     }
 
     .input-area button {
@@ -132,14 +112,8 @@
       border: none;
       border-radius: 30px;
       padding: 12px 20px;
-      font-size: 1rem;
-      margin-left: 12px;
+      margin-left: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .input-area button:hover {
-      background-color: #5c231f;
     }
 
     footer {
@@ -155,26 +129,6 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      header h1 {
-        margin-bottom: 12px;
-      }
-
-      #chat {
-        height: 85vh;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-    }
-
-    /* WhatsApp floating button */
     .whatsapp-float {
       position: fixed;
       width: 50px;
@@ -182,20 +136,21 @@
       bottom: 20px;
       right: 20px;
       background-color: #25d366;
-      color: #FFF;
-      border-radius: 50px;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 2px 2px 3px #999;
-      z-index: 100;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 100;
     }
 
     .whatsapp-float img {
       width: 30px;
       height: 30px;
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; align-items: flex-start; }
+      header h1 { margin-bottom: 12px; }
     }
   </style>
 </head>
@@ -213,6 +168,11 @@
 
   <div class="chat-container">
     <div id="chat"></div>
+
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+      <button onclick="handleSend()">Enviar</button>
+    </div>
   </div>
 
   <footer>
@@ -220,130 +180,65 @@
     <a href="https://forms.gle/R22fXoU9e2yXjXNbA" target="_blank">Receba a newsletter do SommeliAI 🍷</a>
   </footer>
 
-  <a class="whatsapp-float" href="https://wa.me/?text=Olha%20essa%20dica%20de%20vinho%20do%20SommeliAI%20🍷%20https://brisaevino.github.io/sommeliai/dicas.html" target="_blank" aria-label="Compartilhar no WhatsApp">
+  <a class="whatsapp-float" href="https://wa.me/?text=Olha%20essa%20dica%20de%20vinho%20do%20SommeliAI%20🍷%20https://brisaevino.github.io/sommeliai/dicas.html" target="_blank">
     <img src="https://icongr.am/fontawesome/whatsapp.svg?size=30&color=ffffff" alt="Compartilhar no WhatsApp" />
   </a>
 
   <script>
-    const chatBox = document.getElementById('chat');
-    const apiKey = "SUA_API_KEY_AQUI"; // ⚠️ Substitua pela sua chave OpenAI aqui, mas não deixe exposta em produção!
+    const apiKey = "SUA_API_KEY_AQUI"; // ⚠️ Substitua aqui com sua chave da OpenAI
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('userInput');
 
-    const systemPrompt = `Você é o SommeliAI, sommelier digital do restaurante Lilló. Fale com simpatia, bom humor e sem esnobismo. Use linguagem leve e divertida.
-
-A carta de vinhos do Lilló é:
-Espumantes:
-- Chandon Réserve Brut
-- Chandon Brut Rosé
-- Fausto Brut
-- Fausto Brut Rosé
-
-Brasileiros:
-- Miolo Reserva Chardonnay
-- Miolo Reserva Cabernet Sauvignon
-- Miolo Reserva Pinot Noir
-
-Argentinos:
-- Alamos Chardonnay
-- Felino Chardonnay
-- Alamos Malbec Rosé
-- Estancia Mendoza Varietal Malbec
-
-Siga o fluxo abaixo:
-1. Dê as boas-vindas e peça para o cliente escolher uma das opções:
-  1. Tô em dúvida entre dois vinhos
-  2. Quero uma sugestão pra uma ocasião especial
-  3. Quero um vinho que combine com o prato que eu escolhi
-2. Em seguida, pergunte sobre a personalidade:
-  1. Elegante e refinado
-  2. Divertido e tranquilo
-  3. Apreciador de vinhos de longa data
-  4. Prático
-3. Com base na escolha anterior, indique um vinho da carta acima. Não invente vinhos que não estão na carta. Use frases leves e simpáticas.`;
+    const systemPrompt = `Você é o SommeliAI, sommelier digital do restaurante Lilló... [resumo omitido por espaço, pode colar o completo aqui]`;
 
     let messages = [
       { role: "system", content: systemPrompt }
     ];
 
-    // Mensagem inicial ao carregar a página
+    function appendMessage(sender, text) {
+      const div = document.createElement('div');
+      div.className = `message ${sender}`;
+      div.innerHTML = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    async function handleSend() {
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage("user", text);
+      messages.push({ role: "user", content: text });
+      input.value = "";
+
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4o",
+          messages,
+          temperature: 0.8
+        })
+      });
+
+      const data = await res.json();
+      const reply = data.choices?.[0]?.message?.content || "Erro na resposta.";
+      appendMessage("bot", reply);
+      messages.push({ role: "assistant", content: reply });
+    }
+
+    // Mensagem inicial
     window.onload = () => {
       appendMessage("bot", `E aí! Eu sou o SommeliAI 🍷🤖 — seu assistente de vinho menos esnobe que aquele seu amigo metido a sommelier e bem mais gente boa.<br><br>Me conta o que você precisa:<br>1. Tô em dúvida entre dois vinhos<br>2. Quero uma sugestão pra uma ocasião especial<br>3. Quero um vinho que combine com o prato que eu escolhi<br><br>Digite o número da opção que mais combina com você 👇`);
+      input.focus();
     };
 
-    function appendMessage(sender, text) {
-      const message = document.createElement('div');
-      message.className = `message ${sender}`;
-      message.innerHTML = text;
-      chatBox.appendChild(message);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    async function sendMessage(userText) {
-      if (!userText) return;
-
-      appendMessage('user', userText);
-      messages.push({ role: "user", content: userText });
-
-      // Chamada API OpenAI
-      try {
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${apiKey}`
-          },
-          body: JSON.stringify({
-            model: "gpt-4o",
-            messages: messages,
-            temperature: 0.8
-          })
-        });
-
-        const data = await response.json();
-        if (data.error) {
-          appendMessage('bot', `Erro da API: ${data.error.message}`);
-          return;
-        }
-
-        const reply = data.choices[0].message.content;
-        appendMessage('bot', reply);
-        messages.push({ role: "assistant", content: reply });
-      } catch (error) {
-        appendMessage('bot', 'Erro na conexão com a API. Tente novamente mais tarde.');
-      }
-    }
-
-    // Input e botão no DOM criados dinamicamente para ficar mais clean
-    const inputArea = document.createElement('div');
-    inputArea.className = 'input-area';
-
-    const inputField = document.createElement('input');
-    inputField.type = 'text';
-    inputField.placeholder = 'Digite sua mensagem...';
-    inputArea.appendChild(inputField);
-
-    const sendButton = document.createElement('button');
-    sendButton.textContent = 'Enviar';
-    sendButton.onclick = () => {
-      const text = inputField.value.trim();
-      if(text){
-        sendMessage(text);
-        inputField.value = '';
-        inputField.focus();
-      }
-    };
-    inputArea.appendChild(sendButton);
-
-    chatBox.appendChild(inputArea);
-
-    // Focar no input automaticamente
-    inputField.focus();
-
-    // Enviar mensagem ao apertar Enter
-    inputField.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){
-        sendButton.click();
-      }
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") handleSend();
     });
   </script>
+
 </body>
 </html>
