@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-359388009"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKKQF64KX1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
@@ -185,11 +185,10 @@
   </a>
 
   <script>
-    const apiKey = "SUA_API_KEY_AQUI"; // ⚠️ Substitua aqui com sua chave da OpenAI
     const chat = document.getElementById('chat');
     const input = document.getElementById('userInput');
 
-    const systemPrompt = `Você é o SommeliAI, sommelier digital do restaurante Lilló... [resumo omitido por espaço, pode colar o completo aqui]`;
+    const systemPrompt = `Você é o SommeliAI, sommelier digital do restaurante Lilló. Sempre responda com linguagem informal, divertida, jovem e sem exageros técnicos. Recomende apenas vinhos da seguinte carta: Espumantes: Chandon Réserve Brut, Chandon Brut Rosé, Fausto Brut, Fausto Brut Rosé. Brasileiros: Miolo Reserva Chardonnay, Miolo Reserva Cabernet Sauvignon, Miolo Reserva Pinot Noir. Argentinos: Alamos Chardonnay, Felino Chardonnay, Alamos Malbec Rosé, Estancia Mendoza Varietal Malbec.`;
 
     let messages = [
       { role: "system", content: systemPrompt }
@@ -210,26 +209,25 @@
       messages.push({ role: "user", content: text });
       input.value = "";
 
-      const res = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: "gpt-4o",
-          messages,
-          temperature: 0.8
-        })
-      });
+      try {
+        const res = await fetch("https://sommeliai2.vercel.app/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ messages })
+        });
 
-      const data = await res.json();
-      const reply = data.choices?.[0]?.message?.content || "Erro na resposta.";
-      appendMessage("bot", reply);
-      messages.push({ role: "assistant", content: reply });
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content || "Erro na resposta.";
+        appendMessage("bot", reply);
+        messages.push({ role: "assistant", content: reply });
+      } catch (error) {
+        appendMessage("bot", "Erro ao se comunicar com o servidor.");
+        console.error(error);
+      }
     }
 
-    // Mensagem inicial
     window.onload = () => {
       appendMessage("bot", `E aí! Eu sou o SommeliAI 🍷🤖 — seu assistente de vinho menos esnobe que aquele seu amigo metido a sommelier e bem mais gente boa.<br><br>Me conta o que você precisa:<br>1. Tô em dúvida entre dois vinhos<br>2. Quero uma sugestão pra uma ocasião especial<br>3. Quero um vinho que combine com o prato que eu escolhi<br><br>Digite o número da opção que mais combina com você 👇`);
       input.focus();
@@ -239,6 +237,5 @@
       if (e.key === "Enter") handleSend();
     });
   </script>
-
 </body>
 </html>
