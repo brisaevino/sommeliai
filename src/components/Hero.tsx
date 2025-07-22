@@ -4,7 +4,6 @@ import { useSearchParams } from 'next/navigation';
 import NewsletterForm from "./NewsletterForm";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { systemPrompt } from "../lib/prompt";
 
 // 📝 Definir tipos específicos
 interface ChatMessage {
@@ -118,7 +117,7 @@ function HeroWithSearchParams() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [{ role: "system", content: systemPrompt }, ...newMessages],
+          messages: newMessages, // só as mensagens do usuário!
         }),
       });
 
@@ -242,9 +241,8 @@ function HeroWithSearchParams() {
 
       console.log('📤 Dados sendo enviados para webhook:', webhookData);
 
-      await fetch('https://script.google.com/macros/s/AKfycby5UEJtm86jx1Yh6LQ7HEhcUAI464H3zjmPpPoamfJjrgD7XowxLyAK-ELDe5l64JgK/exec', {
+      await fetch('/api/webhook', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },

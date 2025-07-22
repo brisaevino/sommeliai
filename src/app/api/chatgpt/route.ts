@@ -1,3 +1,5 @@
+import { systemPrompt } from '@/lib/prompt';
+
 export async function POST(req: Request) {
   console.log("🔥 ChatGPT API iniciada");
   
@@ -35,6 +37,12 @@ export async function POST(req: Request) {
     console.log("🔑 API Key encontrada:", apiKey.substring(0, 20) + "...");
     console.log("📝 Enviando mensagens para OpenAI:", messages);
 
+    // Adicione o prompt aqui, no backend:
+    const messagesWithPrompt = [
+      { role: "system", content: systemPrompt },
+      ...messages,
+    ];
+
     // Fazer requisição para OpenAI
     const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -44,7 +52,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        messages: messages,
+        messages: messagesWithPrompt,
         max_tokens: 1000,
         temperature: 0.7,
       }),
