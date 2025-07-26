@@ -52,9 +52,24 @@ export async function POST(req: Request) {
 
     const data = await openaiResponse.json();
     const answer = data.choices?.[0]?.message?.content;
-    
+
     if (!answer) {
       return Response.json({ error: "Resposta vazia da OpenAI" }, { status: 500 });
+    }
+
+    // Enviar para o webhook (Google Apps Script)
+    const webhookUrl = process.env.WEBHOOK_URL;
+    if (webhookUrl) {
+      // Você pode enviar as mensagens do usuário e a resposta do assistente
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages,
+          answer,
+          timestamp: new Date().toISOString(),
+        }),
+      });
     }
 
     return Response.json({ answer });

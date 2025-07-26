@@ -73,12 +73,11 @@ function HeroWithSearchParams() {
         url: window.location.href
       };
 
-      console.log('📊 Analytics Event:', eventType, eventData);
-      
+      // Removido: console.log('📊 Analytics Event:', eventType, eventData);
       // ❌ REMOVIDO: Não enviar eventos para webhook
       // Apenas log local para debug
     } catch (error) {
-      console.error('❌ Erro no analytics:', error);
+      // Removido: console.error('❌ Erro no analytics:', error);
     }
   };
 
@@ -111,7 +110,7 @@ function HeroWithSearchParams() {
     });
 
     try {
-      console.log('🚀 Enviando pergunta para API:', trimmed);
+      // Removido: console.log('🚀 Enviando pergunta para API:', trimmed);
 
       const res = await fetch("/api/chatgpt", {
         method: "POST",
@@ -122,7 +121,7 @@ function HeroWithSearchParams() {
       });
 
       const data = await res.json();
-      console.log('📥 Resposta da API recebida:', data);
+      // Removido: console.log('📥 Resposta da API recebida:', data);
       
       const assistantResponse = data.answer || `Erro: ${data.error || "Erro ao obter resposta."}`;
       
@@ -135,10 +134,10 @@ function HeroWithSearchParams() {
       const finalMessages = [...newMessages, assistantMsg];
       setMessages(finalMessages);
 
-      console.log('📤 Enviando para webhook:', { 
-        pergunta: trimmed, 
-        resposta: assistantResponse 
-      });
+      // Removido: console.log('📤 Enviando para webhook:', { 
+      //   pergunta: trimmed, 
+      //   resposta: assistantResponse 
+      // });
 
       // ✅ WEBHOOK APENAS AQUI - quando há pergunta + resposta real
       await sendToWebhook(trimmed, assistantResponse);
@@ -153,7 +152,7 @@ function HeroWithSearchParams() {
       // ❌ REMOVIDO: sendConversationToWebhook a cada 3 mensagens
 
     } catch (error) {
-      console.error('❌ Erro na API:', error);
+      // Removido: console.error('❌ Erro na API:', error);
       
       const errorMsg = "Erro ao conectar à API.";
       const assistantMsg: ChatMessage = { 
@@ -181,7 +180,7 @@ function HeroWithSearchParams() {
   const startChat = async () => {
     setShowChat(true);
     // ❌ REMOVIDO: trackEvent que enviava para webhook
-    console.log('📊 Chat iniciado via botão');
+    // Removido: console.log('📊 Chat iniciado via botão');
   };
 
   const restartChat = async () => {
@@ -202,7 +201,7 @@ function HeroWithSearchParams() {
     setShowChat(true);
 
     // ❌ REMOVIDO: trackEvent que enviava para webhook
-    console.log('📊 Chat reiniciado');
+    // Removido: console.log('📊 Chat reiniciado');
   };
 
   const backToHome = async () => {
@@ -222,7 +221,7 @@ function HeroWithSearchParams() {
     ]);
 
     // ❌ REMOVIDO: trackEvent que enviava para webhook
-    console.log('📊 Usuário saiu do chat');
+    // Removido: console.log('📊 Usuário saiu do chat');
   };
 
   // ❌ REMOVIDO: useEffect de beforeunload que enviava para webhook
@@ -239,7 +238,7 @@ function HeroWithSearchParams() {
         url: window.location.href
       };
 
-      console.log('📤 Dados sendo enviados para webhook:', webhookData);
+      // Removido: console.log('📤 Dados sendo enviados para webhook:', webhookData);
 
       await fetch('/api/webhook', {
         method: 'POST',
@@ -249,9 +248,9 @@ function HeroWithSearchParams() {
         body: JSON.stringify(webhookData)
       });
 
-      console.log('✅ Webhook enviado com sucesso');
+      // Removido: console.log('✅ Webhook enviado com sucesso');
     } catch (error) {
-      console.error('❌ Erro ao enviar webhook:', error);
+      // Removido: console.error('❌ Erro ao enviar webhook:', error);
     }
   };
 
